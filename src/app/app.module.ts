@@ -18,8 +18,10 @@ import { SearchModule } from './search/search.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     SharedModule,
     SearchModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

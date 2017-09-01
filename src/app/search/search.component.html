@@ -1,3 +1,6 @@
-<p>
-  search works!
-</p>
+
+<form #searchForm="ngForm" (ngSubmit)="searchMovie(search.value)" class="form-group">
+  <input #search="ngModel" name="search" [(ngModel)]="term" minlength="3" type="text" class="form-control" required/>
+  <button type="submit" class="btn btn-danger" [disabled]="!searchForm.valid">Search</button>
+</form>
+  
