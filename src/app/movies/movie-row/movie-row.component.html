@@ -1,7 +1,7 @@
-<li class="align-middle">
+<li>
   <br><strong>Movie title: </strong>{{ movie.name }}
   <br><strong>Director: </strong>{{ movie.director }}
-  <br><strong>Image: </strong><a href="movie.imageUrl">Click to see image</a>
+  <br><strong>Image: </strong><br><img height="170" src="{{ movie.imageUrl }}">
   <br><strong>Duration: </strong>{{ movie.duration }}
   <br><strong>Release Date: </strong>{{ movie.releaseDate }}
   <br><strong>Genres: </strong><ul *ngFor="let genre of movie.genres">
