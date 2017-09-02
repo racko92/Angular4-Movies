@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from './../shared/shared.module';
-import { SearchComponent } from './search.component'
+import { SearchComponent } from './search.component';
+import { SearchPageComponent } from './search-page/search-page.component'
+
 
 @NgModule({
   imports: [
@@ -12,10 +14,12 @@ import { SearchComponent } from './search.component'
     FormsModule
   ],
   declarations: [
-    SearchComponent
+    SearchComponent,
+    SearchPageComponent
   ],
   exports: [
-    SearchComponent
+    SearchComponent,
+    SearchPageComponent
   ]
 })
 export class SearchModule { }

@@ -13,7 +13,7 @@ export class MovieService {
     this.movieList = movieList;
   }
 
-  public getMovies(){
+  getMovies(){
     this.movieList.forEach((value) => {
       this.movies.push(new Movie(
         value.id, value.name, value.director,
@@ -27,4 +27,18 @@ export class MovieService {
     });
   }
 
+  search(term){
+    
+  let movie = this.movieList.filter(o => o.name == term);
+
+  return new Observable((observable: Observer<any>) => {
+      if (movie) {
+        observable.next(movie);
+      } 
+      else {
+        observable.error(movie);
+      }
+    });
+      
+  }
 }

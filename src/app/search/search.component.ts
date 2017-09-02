@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { Movie } from './../shared/models/movie.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html'
 })
 export class SearchComponent {
 
-  private movie: Movie;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute) { }
 
   searchMovie(term){
-    this.router.navigate(['/search/:' + term]);
+    this.router.navigate(['/search/' + term]);
   }
 }
