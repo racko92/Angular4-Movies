@@ -8,12 +8,14 @@ import { LayoutComponent } from './layout/layout.component';
 import { MoviesComponent } from './movies/movies.component';
 import { SharedModule } from './shared/shared.module';
 import { SearchModule } from './search/search.module';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    MoviesComponent
+    MoviesComponent,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,

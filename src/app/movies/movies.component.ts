@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 import { MovieService } from './../shared/services/movie.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Movie } from './../shared/models/movie.model';
 
 @Component({
   selector: 'app-movies',
@@ -24,5 +25,10 @@ export class MoviesComponent {
         alert(`Backend returned code ${err.status} with message: ${err.error}`);        
       }
     );
+  }
+
+  addMovie(movie: Movie) {
+    console.log(movie);
+    this.movieService.addMovie(movie).subscribe();
   }
 }

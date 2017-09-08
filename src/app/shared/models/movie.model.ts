@@ -6,6 +6,6 @@ export class Movie{
         public imageUrl?: string,
         public duration?: number,
         public releaseDate?: string,
-        public genres?: string[]
+        public genres?: string
     ){}
 }

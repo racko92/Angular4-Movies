@@ -31,14 +31,34 @@ export class MovieService {
     
   let movie = this.movieList.filter(o => o.name == term);
 
-  return new Observable((observable: Observer<any>) => {
+  return new Observable((o: Observer<any>) => {
       if (movie) {
-        observable.next(movie);
+        o.next(movie);
       } 
       else {
-        observable.error(movie);
+        o.error(movie);
       }
     });
-      
+  }
+
+  addMovie(movie: Movie){
+    console.log(movie);
+    return new Observable((o: Observer<any>) => {
+      this.http.post('http://localhost:8000/api/movies', {
+        name: movie.name,
+        director: movie.director,
+        imageUrl: movie.imageUrl,
+        duration: movie.duration,
+        releaseDate: movie.releaseDate,
+        genres: movie.genres.split(',')
+      }).subscribe((movie: any) => {
+        let m = new Movie(movie.id, movie.name, movie.director, movie.imageUrl, movie.duration, movie.releaseDate, movie.genres);
+        this.movies.push(m);
+        o.next(m);
+        return o.complete();
+      }), () => {
+        console.log('Error');
+      };
+    });
   }
 }
