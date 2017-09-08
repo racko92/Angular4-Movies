@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from './../../shared/services/movie.service';
-import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -10,7 +9,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SearchPageComponent implements OnInit {
 
   constructor(private movie: MovieService,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute,
+              private router: Router
+            ) { 
   }
 
   ngOnInit() {
@@ -22,9 +23,10 @@ export class SearchPageComponent implements OnInit {
       this.movie.search(term).subscribe(data => {
         this.movie = data;
       },
-      (err:HttpErrorResponse) => {
-          alert(`Backend returned code ${err.status} with message: ${err.error}`);
-      });
+      (term) => {
+          alert(`Backend returned code ${term.status} with message: ${term.error}`);
+          
+        });
     });
   }
 

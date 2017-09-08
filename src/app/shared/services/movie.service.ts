@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { movieList } from './../examples';
+import { HttpClient } from '@angular/common/http';
 import { Movie } from './../models/movie.model'
 import { Observable, Observer } from 'rxjs';
 
@@ -9,21 +9,21 @@ export class MovieService {
   private movies: any[] = [];
   private movieList: any[];
 
-  constructor() { 
-    this.movieList = movieList;
+  constructor(
+    private http: HttpClient
+  ) { 
+    // this.movieList = movieList;
   }
 
   getMovies(){
-    this.movieList.forEach((value) => {
-      this.movies.push(new Movie(
-        value.id, value.name, value.director,
-        value.imageUrl, value.duration,
-        value.releaseDate, value.genres
-        ));
-    });
-
-    return new Observable(( o: Observer<any>) =>{
-      o.next(this.movies);
+    return new Observable((o: Observer<any>) => {
+      this.http.get('http://localhost:8000/api/movies').subscribe((movies: any[]) => {
+        this.movies = movies.map((movie) => {
+          return new Movie(movie.id, movie.name, movie.director,movie.imageUrl, movie.duration, movie.releaseDate, movie.genres);
+        });
+        o.next(this.movies);
+        return o.complete();
+      })
     });
   }
 
